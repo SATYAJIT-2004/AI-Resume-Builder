@@ -33,11 +33,11 @@ const handleChange = (field,value)=>{
             )}
             <input type="file" accept='image/jpeg,image/png' className='hidden' onChange={(e)=>handleChange("image",e.target.files[0])}/>
         </label>
-        {typeof data.image === 'object' &&(
+        {data.image && (
             <div className='flex flex-col gap-1 pl-4 text-sm'>
                 <p>Remove Background</p>
                 <label className='relative inline-flex items-center cursor-pointer text-gray-900 gap-3'>
-                      <input type="checkbox" className='sr-only peer' onChange={()=>setRemoveBackground(prev => !prev)} checked ={removeBackground}/>
+                      <input type="checkbox" className='sr-only peer'  onChange={(e)=>setRemoveBackground(e.target.checked)} checked ={removeBackground}/>
                       <div className='w-9 h-5 bg-slate-300 rounded-full peer peer-checked:bg-green-600 transition-colors duration-200'>
                       </div>
                       <span className='dot absolute left-1 top-1 w-3 h-3 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-4'></span>
@@ -47,12 +47,12 @@ const handleChange = (field,value)=>{
 
    </div>
    {fields.map((field)=>{
-    const icon = field.icon;
+    const Icon = field.icon;
 
     return (    
         <div key={field.key} className='space-y-1 mt-5'>
             <label className='flex items-center gap-2 text-sm font-medium text-gray-600'>
-                  <icon className='size-4'/>
+                  <Icon className='size-4'/>
                   {field.label}
                   {field.required && <span className='text-red-500'>*</span> }
             </label> 
