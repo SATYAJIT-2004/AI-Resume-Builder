@@ -41,6 +41,7 @@ const ResumeBuilder = () => {
       }})
       if(data.resume){
         setResumeData(data.resume)
+        setRemoveBackground(data.resume.removeBackground || false)
         document.title = data.resume.title;
       }
      } catch (error) {
@@ -61,9 +62,9 @@ const ResumeBuilder = () => {
   ]
 
    const activeSection = sections[activeSectionIndex]
-  useEffect(()=>{
-    loadExistingResume()
-  },[])
+ useEffect(()=>{
+  if(resumeId) loadExistingResume()
+},[resumeId])
 
   const changeResumeVisibility = async ()=>{
    try {
